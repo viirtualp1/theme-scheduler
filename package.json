@@ -2,7 +2,7 @@
   "name": "theme-scheduler-zen",
   "displayName": "Theme Scheduler Zen",
   "description": "Automatically switch VS Code themes based on sunrise/sunset or custom schedule",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.99.0"
   },

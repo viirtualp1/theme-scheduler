@@ -82,7 +82,7 @@ function getConfig(): ThemeSchedulerConfig {
   }
 }
 
-function isDaytime(): boolean {
+function isDaytime() {
   const config = getConfig()
   const now = new Date()
 
