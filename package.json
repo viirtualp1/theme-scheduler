@@ -86,6 +86,7 @@
     "package": "vsce package"
   },
   "publisher": "virtualp1",
+  "icon": "icon.png",
   "keywords": [
     "theme",
     "dark mode",
