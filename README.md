@@ -1,6 +1,6 @@
 # Theme Scheduler
 
-Automatically switch VS Code themes based on sunrise/sunset times or a custom schedule.
+Automatically switch themes based on sunrise/sunset times or a custom schedule.
 
 ## Features
 
@@ -14,7 +14,7 @@ Automatically switch VS Code themes based on sunrise/sunset times or a custom sc
 
 ### Sunrise/Sunset Mode (Default)
 
-1. Open VS Code settings (Cmd+, or Ctrl+,)
+1. Open settings (CMD+Shift+P => "Open user settings")
 2. Search for "Theme Scheduler"
 3. Set your latitude and longitude (defaults to New York City)
 4. Choose your day and night themes
@@ -22,7 +22,7 @@ Automatically switch VS Code themes based on sunrise/sunset times or a custom sc
 
 ### Manual Time Mode
 
-1. Open VS Code settings
+1. Open settings (CMD+Shift+P => "Open user settings")
 2. Search for "Theme Scheduler"
 3. Change **Mode** to `manual`
 4. Set **Manual Day Time** (e.g., "07:00" for 7 AM)

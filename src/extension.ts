@@ -43,7 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('theme-scheduler.switchNow', () => {
-      switchTheme()
+      toggleTheme()
     }),
   )
 
@@ -127,6 +127,29 @@ function switchTheme() {
   }
 
   updateStatusBar(isDayTime ? 'day' : 'night')
+}
+
+function toggleTheme() {
+  const config = getConfig()
+  const currentTheme = vscode.workspace
+    .getConfiguration('workbench')
+    .get('colorTheme')
+
+  const isDayTime = isDaytime()
+  const targetTheme = isDayTime ? config.dayTheme : config.nightTheme
+  const oppositeTheme = isDayTime ? config.nightTheme : config.dayTheme
+
+  if (currentTheme === targetTheme) {
+    vscode.workspace
+      .getConfiguration('workbench')
+      .update('colorTheme', oppositeTheme, vscode.ConfigurationTarget.Global)
+    updateStatusBar(isDayTime ? 'night' : 'day')
+  } else {
+    vscode.workspace
+      .getConfiguration('workbench')
+      .update('colorTheme', targetTheme, vscode.ConfigurationTarget.Global)
+    updateStatusBar(isDayTime ? 'day' : 'night')
+  }
 }
 
 function updateStatusBar(mode: 'day' | 'night' | 'disabled') {
