@@ -2,6 +2,12 @@
 
 Automatically switch themes by time of day.
 
+## How to install the extension
+1. Download the latest version from "Releases"
+2. In VS Code, press CMD+Shift+P and select "Install from VSIX"
+4. Select the .vsix file
+5. Ready to go!
+
 ## Features
 
 - **Automatic theme switching** at configurable day/night times
