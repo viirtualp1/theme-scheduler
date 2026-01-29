@@ -1,8 +1,8 @@
 {
   "name": "theme-scheduler-zen",
   "displayName": "Theme Scheduler Zen",
-  "description": "Automatically switch themes based on sunrise/sunset or custom schedule",
-  "version": "1.0.2",
+  "description": "Automatically switch themes by time of day",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.99.0"
   },
@@ -37,44 +37,25 @@
           "default": true,
           "description": "Enable automatic theme switching"
         },
-        "themeScheduler.mode": {
-          "type": "string",
-          "enum": [
-            "sunriseSunset",
-            "manual"
-          ],
-          "default": "sunriseSunset",
-          "description": "Choose between automatic sunrise/sunset detection or manual time settings"
-        },
         "themeScheduler.dayTheme": {
           "type": "string",
           "default": "Default Light+",
-          "description": "Theme to use during daytime/sunrise"
+          "description": "Theme to use during daytime"
         },
         "themeScheduler.nightTheme": {
           "type": "string",
           "default": "Default Dark+",
-          "description": "Theme to use during nighttime/sunset"
+          "description": "Theme to use at night"
         },
-        "themeScheduler.latitude": {
-          "type": "number",
-          "default": 40.7128,
-          "description": "Latitude for sunrise/sunset calculation (default: New York)"
-        },
-        "themeScheduler.longitude": {
-          "type": "number",
-          "default": -74.006,
-          "description": "Longitude for sunrise/sunset calculation (default: New York)"
-        },
-        "themeScheduler.manualDayTime": {
+        "themeScheduler.dayTime": {
           "type": "string",
           "default": "07:00",
-          "description": "Time to switch to day theme (HH:MM format, 24-hour)"
+          "description": "Time to switch to day theme (HH:MM, 24-hour)"
         },
-        "themeScheduler.manualNightTime": {
+        "themeScheduler.nightTime": {
           "type": "string",
           "default": "19:00",
-          "description": "Time to switch to night theme (HH:MM format, 24-hour)"
+          "description": "Time to switch to night theme (HH:MM, 24-hour)"
         }
       }
     }
@@ -90,9 +71,7 @@
   "keywords": [
     "theme",
     "dark mode",
-    "light mode",
-    "sunrise",
-    "sunset"
+    "light mode"
   ],
   "author": "virtualp1",
   "license": "ISC",
@@ -106,7 +85,6 @@
     "@vscode/vsce": "^2.26.0",
     "esbuild": "^0.27.0",
     "prettier": "^3.6.2",
-    "suncalc3": "^2.0.5",
     "typescript": "^5.9.3",
     "vscode-test": "^1.6.1"
   }

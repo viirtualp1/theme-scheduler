@@ -1,15 +1,11 @@
 import * as vscode from 'vscode'
-import { getTimes } from 'suncalc3'
 
 interface ThemeSchedulerConfig {
   enabled: boolean
-  mode: 'sunriseSunset' | 'manual'
   dayTheme: string
   nightTheme: string
-  latitude: number
-  longitude: number
-  manualDayTime: string
-  manualNightTime: string
+  dayTime: string
+  nightTime: string
 }
 
 let statusBarItem: vscode.StatusBarItem
@@ -70,15 +66,13 @@ export function deactivate() {
 
 function getConfig(): ThemeSchedulerConfig {
   const config = vscode.workspace.getConfiguration('themeScheduler')
+
   return {
     enabled: config.get('enabled', true),
-    mode: config.get('mode', 'sunriseSunset'),
     dayTheme: config.get('dayTheme', 'Default Light+'),
     nightTheme: config.get('nightTheme', 'Default Dark+'),
-    latitude: config.get('latitude', 40.7128),
-    longitude: config.get('longitude', -74.006),
-    manualDayTime: config.get('manualDayTime', '07:00'),
-    manualNightTime: config.get('manualNightTime', '19:00'),
+    dayTime: config.get('dayTime', '07:00'),
+    nightTime: config.get('nightTime', '19:00'),
   }
 }
 
@@ -86,24 +80,14 @@ function isDaytime() {
   const config = getConfig()
   const now = new Date()
 
-  if (config.mode === 'sunriseSunset') {
-    const times = getTimes(now, config.latitude, config.longitude)
-    const sunrise = times.sunrise.value
-    const sunset = times.sunset.value
+  const [dayHour, dayMinute] = config.dayTime.split(':').map(Number)
+  const [nightHour, nightMinute] = config.nightTime.split(':').map(Number)
 
-    return now >= sunrise && now < sunset
-  } else {
-    const [dayHour, dayMinute] = config.manualDayTime.split(':').map(Number)
-    const [nightHour, nightMinute] = config.manualNightTime
-      .split(':')
-      .map(Number)
+  const currentMinutes = now.getHours() * 60 + now.getMinutes()
+  const dayMinutes = dayHour * 60 + dayMinute
+  const nightMinutes = nightHour * 60 + nightMinute
 
-    const currentMinutes = now.getHours() * 60 + now.getMinutes()
-    const dayMinutes = dayHour * 60 + dayMinute
-    const nightMinutes = nightHour * 60 + nightMinute
-
-    return currentMinutes >= dayMinutes && currentMinutes < nightMinutes
-  }
+  return currentMinutes >= dayMinutes && currentMinutes < nightMinutes
 }
 
 function switchTheme() {
@@ -162,6 +146,7 @@ function updateStatusBar(mode: 'day' | 'night' | 'disabled') {
     statusBarItem.text = `${icon} ${mode === 'day' ? 'Day' : 'Night'}`
     statusBarItem.tooltip = `Current: ${mode === 'day' ? 'Day theme' : 'Night theme'}. Click to switch now.`
   }
+
   statusBarItem.show()
 }
 
