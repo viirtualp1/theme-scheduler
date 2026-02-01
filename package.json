@@ -2,7 +2,7 @@
   "name": "theme-scheduler-zen",
   "displayName": "Theme Scheduler Zen",
   "description": "Automatically switch themes by time of day",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "engines": {
     "vscode": "^1.99.0"
   },
