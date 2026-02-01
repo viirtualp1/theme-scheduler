@@ -7,7 +7,6 @@
     "vscode": "^1.99.0"
   },
   "categories": [
-    "Themes",
     "Other"
   ],
   "activationEvents": [
@@ -69,6 +68,9 @@
   "publisher": "virtualp1",
   "icon": "icon.png",
   "keywords": [
+    "switcher",
+    "automatic",
+    "auto",
     "theme",
     "dark mode",
     "light mode"
